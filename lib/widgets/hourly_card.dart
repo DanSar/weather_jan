@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import '../const/formatted.dart';
 
 Widget hourlyCard(AsyncSnapshot snapshot, int index) {
-  var forecastList = snapshot.data?.list;
+  final forecastList = snapshot.data?.list;
   var time = '';
   DateTime date =
       DateTime.fromMillisecondsSinceEpoch(forecastList[index].dt * 1000);
-  var fullDate = Util.getHourMinute(date);
+  final fullDate = Util.getHourMinute(date);
   // fullDate.split(',')[0]
   time = fullDate;
-  var temp = forecastList[index].main.temp.toStringAsFixed(0);
-  var icon = forecastList[index].getIconUrl();
-  var deg = forecastList[index].wind.deg;
-  var speedWind = forecastList[index].wind.speed.toStringAsFixed(1);
+  final temp = forecastList[index].main.temp.toStringAsFixed(0);
+  final icon = forecastList[index].getIconUrl();
+  final deg = forecastList[index].wind.deg;
+  final speedWind = forecastList[index].wind.speed.toStringAsFixed(1);
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 16),
     child: Column(

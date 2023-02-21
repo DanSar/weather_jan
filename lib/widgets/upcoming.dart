@@ -9,22 +9,22 @@ class Upcoming extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var forecastList = snapshot.data?.list;
+    final forecastList = snapshot.data?.list;
     var dayOfWeek = '';
     DateTime date =
         DateTime.fromMillisecondsSinceEpoch(forecastList![2].dt! * 1000);
-    var fullDate = Util.getFormattedDate(date);
+    final fullDate = Util.getFormattedDate(date);
     dayOfWeek = fullDate.split(',')[0]; // Wen
     // var dayOfWeekRu = Text(S.current.dayofWeek);
-    var tempMin = forecastList[0].main?.temp_min?.toStringAsFixed(0);
-    var tempMin1 = forecastList[7].main?.temp_min?.toStringAsFixed(0);
-    var tempMin2 = forecastList[15].main?.temp_min?.toStringAsFixed(0);
-    var tempMax = forecastList[0].main?.temp_max?.toStringAsFixed(0);
-    var tempMax1 = forecastList[7].main?.temp_max?.toStringAsFixed(0);
-    var tempMax2 = forecastList[15].main?.temp_max?.toStringAsFixed(0);
-    var icon = forecastList[0].getIconUrl();
-    var icon1 = forecastList[7].getIconUrl();
-    var icon2 = forecastList[15].getIconUrl();
+    final tempMin = forecastList[0].main?.temp_min?.toStringAsFixed(0);
+    final tempMin1 = forecastList[7].main?.temp_min?.toStringAsFixed(0);
+    final tempMin2 = forecastList[15].main?.temp_min?.toStringAsFixed(0);
+    final tempMax = forecastList[0].main?.temp_max?.toStringAsFixed(0);
+    final tempMax1 = forecastList[7].main?.temp_max?.toStringAsFixed(0);
+    final tempMax2 = forecastList[15].main?.temp_max?.toStringAsFixed(0);
+    final icon = forecastList[0].getIconUrl();
+    final icon1 = forecastList[7].getIconUrl();
+    final icon2 = forecastList[15].getIconUrl();
     return Column(
       children: [
         ListTile(

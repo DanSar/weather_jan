@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import '../const/formatted.dart';
 
 Widget fiveDayCard(AsyncSnapshot snapshot, int index) {
-  var forecastList = snapshot.data?.list;
-  var dayOfWeekCard = '';
+  final forecastList = snapshot.data?.list;
+  final dayOfWeekCard = '';
   DateTime date =
       DateTime.fromMillisecondsSinceEpoch(forecastList[index].dt * 1000);
-  var timeDate = Util.getHourMinute(date);
-  var monthDate = Util.getMonthDate(date),
+  final timeDate = Util.getHourMinute(date);
+  final monthDate = Util.getMonthDate(date),
       // fullDate.split(',')[0]
       dayCard = monthDate; // Tue
-  var tempMinCard = forecastList[index].main.temp_min.toStringAsFixed(0);
+  final tempMinCard = forecastList[index].main.temp_min.toStringAsFixed(0);
   // var tempMin = forecastList[0].main?.temp_min?.toStringAsFixed(0);
-  var tempMaxCard = forecastList[index].main.temp_max.toStringAsFixed(0);
-  var icon = forecastList[index].getIconUrl();
-  var speedWind = forecastList[index].wind.speed.toStringAsFixed(1);
-  var deg = forecastList[index].wind.deg;
+  final tempMaxCard = forecastList[index].main.temp_max.toStringAsFixed(0);
+  final icon = forecastList[index].getIconUrl();
+  final speedWind = forecastList[index].wind.speed.toStringAsFixed(1);
+  final deg = forecastList[index].wind.deg;
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,

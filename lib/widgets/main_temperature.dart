@@ -8,10 +8,10 @@ class MainTemp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var forecastList = snapshot.data?.list;
-    var temp = forecastList?[0].main?.temp?.toStringAsFixed(0);
-    var description = forecastList?[0].weather?[0].description;
-    var beginningOfSentenceCaseDescription = toBeginningOfSentenceCase(
+    final forecastList = snapshot.data?.list;
+    final temp = forecastList?[0].main?.temp?.toStringAsFixed(0);
+    final description = forecastList?[0].weather?[0].description;
+    final beginningOfSentenceCaseDescription = toBeginningOfSentenceCase(
         description); //Чтобы использовать строку с заглавной буквы
     return Container(
       color: Colors.transparent,

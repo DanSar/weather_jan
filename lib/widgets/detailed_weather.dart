@@ -8,14 +8,14 @@ class DetailedWeather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var forecastList = snapshot.data?.list;
-    var feelsLike = forecastList![0].main?.feels_like;
-    var felsLike = double.parse(feelsLike!.toStringAsFixed(0));
-    var pop = forecastList![0].pop! * 100;
-    var speed = forecastList[0].wind?.speed;
-    var himidity = forecastList[0].main?.humidity;
-    var pressure = forecastList[0].main!.pressure! * 0.7500638;
-    var clouds = forecastList[0].clouds?.all;
+    final forecastList = snapshot.data?.list;
+    final feelsLike = forecastList![0].main?.feels_like;
+    final felsLike = double.parse(feelsLike!.toStringAsFixed(0));
+    final pop = forecastList[0].pop! * 100;
+    final speed = forecastList[0].wind?.speed;
+    final himidity = forecastList[0].main?.humidity;
+    final pressure = forecastList[0].main!.pressure! * 0.7500638;
+    final clouds = forecastList[0].clouds?.all;
     return Container(
       margin: const EdgeInsets.all(6.0),
       padding: const EdgeInsets.fromLTRB(20, 10, 90, 10),

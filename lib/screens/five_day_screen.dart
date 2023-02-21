@@ -9,7 +9,7 @@ class FiveDayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var forecastList = snapshot.data?.list;
+    // var forecastList = snapshot.data?.list;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(

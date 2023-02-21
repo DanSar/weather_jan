@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weather_jan/screens/home.dart';
 import 'package:weather_jan/screens/location_screen.dart';
 import '../models/modelsAir.dart';
 
