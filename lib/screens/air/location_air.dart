@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:weather_jan/const/size_colors.dart';
-import 'package:weather_jan/screens/home.dart';
+import 'package:weather_jan/screens/air/screen_index_air.dart';
 
-import '../api/weather_api.dart';
+import '../../api/air_api.dart';
 
-class LocationScreen extends StatefulWidget {
+class LocationAir extends StatefulWidget {
   @override
-  State<LocationScreen> createState() => _LocationScreenState();
+  State<LocationAir> createState() => _LocationAirState();
 }
 
-class _LocationScreenState extends State<LocationScreen> {
-  void getLocationData() async {
+class _LocationAirState extends State<LocationAir> {
+  void getLocationAir() async {
     try {
-      var weatherInfo = await WeatherApi().fetchWeatherCity();
+      var airInfo = await AirApi().fetchAirPollution();
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return MyHomePage(locationWeather: weatherInfo);
+        return ScreenIndexAir(locationAir: airInfo);
       }));
-    } catch (e) {
-      print('$e');
+    } catch (a) {
+      print('$a');
     }
   }
 
   @override
   void initState() {
     super.initState();
-    getLocationData();
+    getLocationAir();
   }
 
   @override

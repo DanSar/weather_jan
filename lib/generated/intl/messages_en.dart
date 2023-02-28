@@ -28,8 +28,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "Sunday": MessageLookupByLibrary.simpleMessage("Воскресенье"),
         "Thursday": MessageLookupByLibrary.simpleMessage("Четверг"),
         "Tuesday": MessageLookupByLibrary.simpleMessage("Вторник"),
-        "Wednesday": MessageLookupByLibrary.simpleMessage("Среда"),
-        "dayW": MessageLookupByLibrary.simpleMessage(
-            "{locale, select, Понедельник {Понедельник} Вторник {Вторник} Среда {Среда}}")
+        "Wednesday": MessageLookupByLibrary.simpleMessage("Среда")
       };
 }

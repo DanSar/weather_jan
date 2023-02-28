@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:weather_jan/const/api_requests.dart';
-import 'package:weather_jan/const/location.dart';
 import 'package:http/http.dart' as http;
-import '../domain/modelsAir/modelsAir.dart';
+import '../../domain/modelsAir/modelsAir.dart';
+import '../util/location.dart';
 
 class AirApi {
   Future<AirPollution?> fetchAirPollution({bool? isCity}) async {

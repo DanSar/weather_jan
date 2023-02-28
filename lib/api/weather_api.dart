@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:weather_jan/const/api_requests.dart';
-import 'package:weather_jan/const/location.dart';
-import '../domain/models/models.dart';
+import '../../domain/models/models.dart';
+import '../util/location.dart';
 
 class WeatherApi {
   Future<WeatherModels> fetchWeatherCity({String? city, bool? isCity}) async {

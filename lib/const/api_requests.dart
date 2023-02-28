@@ -8,4 +8,3 @@ class ApiRequests {
       WEATHER_BASE_SCHEME + WEATHER_BASE_URL_DOMAIN + WEATHER_IMAGES_PATH;
   static const String AIR_PATH = 'data/2.5/air_pollution';
 }
-// f35ee09e7ff055b16e891936a097a671 my

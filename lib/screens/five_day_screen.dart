@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:weather_jan/const/size_colors.dart';
 import 'package:weather_jan/widgets/five_day_cart.dart';
-import '../models/models.dart';
+import '../domain/models/models.dart';
 
 class FiveDayScreen extends StatelessWidget {
   final AsyncSnapshot<WeatherModels> snapshot;
@@ -9,19 +10,17 @@ class FiveDayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var forecastList = snapshot.data?.list;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: colorText,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: colorText,
           elevation: 0,
-          // title: Text('ScreenForecast'),
           leading: IconButton(
             icon: FaIcon(
               FontAwesomeIcons.arrowLeftLong,
-              color: Colors.black,
+              color: colorBlack,
             ),
             onPressed: () {
               Navigator.pop(context);
@@ -34,14 +33,14 @@ class FiveDayScreen extends StatelessWidget {
             child: Text(
               'Прогноз на 5 дней',
               style: TextStyle(
-                fontSize: 30.0,
-                color: Colors.black,
+                fontSize: sizeL,
+                color: colorBlack,
                 // fontWeight: FontWeight.bold,
               ),
             ),
           ),
           Container(
-            color: Colors.white,
+            color: colorText,
             height: 440,
             padding: EdgeInsets.symmetric(vertical: 46, horizontal: 0),
             child: ListView.separated(
@@ -49,11 +48,9 @@ class FiveDayScreen extends StatelessWidget {
               separatorBuilder: (context, index) => SizedBox(width: 4),
               itemCount: snapshot.data!.list!.length,
               itemBuilder: (context, index) => Container(
-                width: MediaQuery.of(context).size.width / 5,
+                width: MediaQuery.of(context).size.width / 4.2,
                 height: 160,
-                color: (index == 0) ? Colors.black12 : Colors.white,
-                // decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-                // Colors.lightBlue[300],
+                color: (index == 0) ? Colors.black12 : colorText,
                 child: fiveDayCard(snapshot, index),
               ),
             ),

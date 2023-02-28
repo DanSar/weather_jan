@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:weather_jan/const/size_colors.dart';
 
 class DataSource extends StatelessWidget {
   const DataSource({Key? key}) : super(key: key);
@@ -13,11 +14,11 @@ class DataSource extends StatelessWidget {
       ),
       FaIcon(
         FontAwesomeIcons.cloudSun,
-        color: Colors.white,
+        color: colorText,
       ),
       Text(
         'OpenWeatherMap',
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        style: TextStyle(color: colorText, fontWeight: FontWeight.bold),
       ),
     ]);
   }

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:weather_jan/const/weather_api.dart';
-import 'package:weather_jan/models/models.dart';
+import 'package:weather_jan/const/size_colors.dart';
 import 'package:weather_jan/screens/five_day_screen.dart';
-import 'package:weather_jan/screens/location_air.dart';
 import 'package:weather_jan/widgets/data_source.dart';
 import 'package:weather_jan/widgets/detailed_weather.dart';
-import 'package:weather_jan/widgets/hourly_list_view.dart';
+import 'package:weather_jan/widgets/hour/hourly_list_view.dart';
 import 'package:weather_jan/widgets/image.dart';
 import 'package:weather_jan/widgets/main_temperature.dart';
 import 'package:weather_jan/widgets/upcoming.dart';
+import '../api/weather_api.dart';
+import '../domain/models/models.dart';
+import 'air/location_air.dart';
 import 'city_screen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -35,15 +36,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('images/nebo.jpg'), fit: BoxFit.cover)),
         child: Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: colorTransparent,
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: Colors.transparent,
+            backgroundColor: colorTransparent,
             elevation: 0, // Тень
             leading: IconButton(
               onPressed: () async {
@@ -70,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 } else {
                   return Center(
                     child: CircularProgressIndicator(
-                      color: Colors.black,
+                      color: colorProgressIndicator,
                     ),
                   );
                 }
@@ -97,20 +99,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           MainTemp(snapshot: snapshot),
                           Upcoming(snapshot: snapshot),
-                          // BottonForecast(forecastObject),
                           Container(
                             width: double.infinity,
-                            color: Colors.transparent,
+                            color: colorTransparent,
                             padding: EdgeInsets.symmetric(
                                 horizontal: 16.0, vertical: 24.0),
                             child: TextButton(
                               style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStateProperty.all(Colors.white38),
+                                    MaterialStateProperty.all(colorWhite38),
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
-                                    // side: BorderSide(color: Colors.white38),
                                   ),
                                 ),
                               ),
@@ -122,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               },
                               child: Text(
                                 'Прогноз на 5 дней',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: colorText),
                               ),
                             ),
                           ),
@@ -131,17 +131,16 @@ class _MyHomePageState extends State<MyHomePage> {
                           DetailedWeather(snapshot: snapshot),
                           Container(
                             width: double.infinity,
-                            color: Colors.transparent,
+                            color: colorTransparent,
                             padding: EdgeInsets.symmetric(
                                 horizontal: 16.0, vertical: 24.0),
                             child: TextButton(
                               style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStateProperty.all(Colors.white38),
+                                    MaterialStateProperty.all(colorWhite38),
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
-                                    // side: BorderSide(color: Colors.white38),
                                   ),
                                 ),
                               ),
@@ -153,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               },
                               child: Text(
                                 'Индекс качества воздуха',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: colorText),
                               ),
                             ),
                           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:weather_jan/const/size_colors.dart';
 import 'package:weather_jan/screens/location_screen.dart';
-import '../domain/modelsAir/modelsAir.dart';
+import '../../domain/modelsAir/modelsAir.dart';
 
 class ScreenIndexAir extends StatefulWidget {
   final locationAir;
@@ -27,12 +28,12 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: colorText,
           elevation: 0,
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: colorBlack,
             ),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -76,7 +77,7 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                   children: [
                     Text(
                       "Индекс качества воздуха(по шкале 1-5)",
-                      style: TextStyle(fontSize: 30),
+                      style: TextStyle(fontSize: sizeL),
                     ),
                     SizedBox(height: 40),
                     Padding(
@@ -97,7 +98,8 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                               children: [
                                 Text(
                                   qualitativeName,
-                                  style: TextStyle(color: color, fontSize: 24),
+                                  style:
+                                      TextStyle(color: color, fontSize: sizeM),
                                 ),
                                 SizedBox(
                                   height: 12,
@@ -115,7 +117,7 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                             children: [
                               Text(
                                 '${snapshot.data!.list?[0].components?.co}',
-                                style: TextStyle(fontSize: 24, color: color),
+                                style: TextStyle(fontSize: sizeM, color: color),
                               ),
                               Text('CO'),
                             ],
@@ -126,7 +128,7 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                             children: [
                               Text(
                                 '${snapshot.data!.list?[0].components?.no}',
-                                style: TextStyle(fontSize: 24, color: color),
+                                style: TextStyle(fontSize: sizeM, color: color),
                               ),
                               Text('NO'),
                             ],
@@ -137,7 +139,7 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                             children: [
                               Text(
                                 '${snapshot.data!.list?[0].components?.no2}',
-                                style: TextStyle(fontSize: 24, color: color),
+                                style: TextStyle(fontSize: sizeM, color: color),
                               ),
                               Text('NO2'),
                             ],
@@ -148,7 +150,7 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                             children: [
                               Text(
                                 '${snapshot.data!.list?[0].components?.o3}',
-                                style: TextStyle(fontSize: 24, color: color),
+                                style: TextStyle(fontSize: sizeM, color: color),
                               ),
                               Text('O3'),
                             ],
@@ -164,7 +166,7 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                             children: [
                               Text(
                                 '${snapshot.data!.list?[0].components?.so2}',
-                                style: TextStyle(fontSize: 24, color: color),
+                                style: TextStyle(fontSize: sizeM, color: color),
                               ),
                               Text('SO2'),
                             ],
@@ -175,7 +177,7 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                             children: [
                               Text(
                                 '${snapshot.data!.list?[0].components?.pm25}',
-                                style: TextStyle(fontSize: 24, color: color),
+                                style: TextStyle(fontSize: sizeM, color: color),
                               ),
                               Text('PM25'),
                             ],
@@ -186,7 +188,7 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                             children: [
                               Text(
                                 '${snapshot.data!.list?[0].components?.pm10}',
-                                style: TextStyle(fontSize: 24, color: color),
+                                style: TextStyle(fontSize: sizeM, color: color),
                               ),
                               Text('PM10'),
                             ],
@@ -197,7 +199,7 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                             children: [
                               Text(
                                 '${snapshot.data!.list?[0].components?.nh3}',
-                                style: TextStyle(fontSize: 24, color: color),
+                                style: TextStyle(fontSize: sizeM, color: color),
                               ),
                               Text('NH3'),
                             ],
@@ -225,9 +227,9 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                                     TextButton(
                                       onPressed: () =>
                                           Navigator.pop(context, 'OK'),
-                                      child: const Text(
+                                      child: Text(
                                         'OK',
-                                        style: TextStyle(color: Colors.black),
+                                        style: TextStyle(color: colorBlack),
                                       ),
                                     ),
                                   ],
@@ -237,17 +239,17 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                           children: [
                             Text(
                               'Подробнее о качестве воздуха',
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(color: colorBlack),
                             ),
                             Icon(
                               Icons.arrow_right_sharp,
-                              color: Colors.black,
+                              color: colorBlack,
                             )
                           ],
                         )),
                     Text(
                       'Open Weather',
-                      style: TextStyle(color: Colors.black54),
+                      style: TextStyle(color: colorBlack54),
                     ),
                   ],
                 ),

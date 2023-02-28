@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:weather_jan/widgets/hourly_card.dart';
-import '../domain/models/models.dart';
+import 'package:weather_jan/const/size_colors.dart';
+import 'package:weather_jan/widgets/hour/hourly_card.dart';
+import '../../domain/models/models.dart';
 
 class HourlyListView extends StatelessWidget {
   final AsyncSnapshot<WeatherModels> snapshot;
@@ -9,7 +10,7 @@ class HourlyListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.transparent,
+      color: colorTransparent,
       height: 200,
       padding: EdgeInsets.symmetric(vertical: 26, horizontal: 2),
       child: ListView.separated(
@@ -19,7 +20,7 @@ class HourlyListView extends StatelessWidget {
         itemBuilder: (context, index) => Container(
           width: MediaQuery.of(context).size.width / 4.2,
           height: 160,
-          color: Colors.transparent,
+          color: colorTransparent,
           child: hourlyCard(snapshot, index),
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../const/formatted.dart';
+import 'package:weather_jan/const/size_colors.dart';
+import '../util/formatted.dart';
 
 Widget fiveDayCard(AsyncSnapshot snapshot, int index) {
   final forecastList = snapshot.data?.list;
@@ -8,12 +8,9 @@ Widget fiveDayCard(AsyncSnapshot snapshot, int index) {
   DateTime date =
       DateTime.fromMillisecondsSinceEpoch(forecastList[index].dt * 1000);
   final timeDate = Util.getHourMinute(date);
-  final monthDate = Util.getMonthDate(date),
-      // fullDate.split(',')[0]
-      dayCard = monthDate; // Tue
-  final tempMinCard = forecastList[index].main.temp_min.toStringAsFixed(0);
-  // var tempMin = forecastList[0].main?.temp_min?.toStringAsFixed(0);
-  final tempMaxCard = forecastList[index].main.temp_max.toStringAsFixed(0);
+  final monthDate = Util.getMonthDate(date), dayCard = monthDate; // Tue
+  final tempMinCard = forecastList[index].main.tempMin.toStringAsFixed(0);
+  final tempMaxCard = forecastList[index].main.tempMax.toStringAsFixed(0);
   final icon = forecastList[index].getIconUrl();
   final speedWind = forecastList[index].wind.speed.toStringAsFixed(1);
   final deg = forecastList[index].wind.deg;
@@ -28,11 +25,11 @@ Widget fiveDayCard(AsyncSnapshot snapshot, int index) {
             children: [
               Text(
                 timeDate,
-                style: TextStyle(fontSize: 18, color: Colors.black54),
+                style: TextStyle(fontSize: sizeS, color: colorBlack54),
               ),
               Text(
                 dayCard,
-                style: TextStyle(fontSize: 12, color: Colors.blue),
+                style: TextStyle(fontSize: sizeXS, color: Colors.blue),
               ),
             ],
           ),
@@ -48,50 +45,48 @@ Widget fiveDayCard(AsyncSnapshot snapshot, int index) {
                 child: Text(
                   '$tempMaxCard °C',
                   style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black,
+                    fontSize: sizeS,
+                    color: colorBlack,
                   ),
                 ),
               ),
               Image.network(icon),
-              // Image.network(icon, scale: 1.2, color: Colors.white),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30.0),
                 child: Text(
                   '$tempMinCard °C',
                   style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black,
+                    fontSize: sizeS,
+                    color: colorBlack,
                   ),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (deg > 45 && deg <= 135) ...[
+                  if (deg > 45 && deg <= 135)
                     Icon(
                       Icons.arrow_forward,
-                      color: Colors.black54,
+                      color: colorBlack54,
                     ),
-                  ] else if (deg > 135 && deg <= 225) ...[
+                  if (deg > 135 && deg <= 225)
                     Icon(
                       Icons.arrow_downward,
-                      color: Colors.black54,
+                      color: colorBlack54,
                     ),
-                  ] else if (deg > 225 && deg <= 315) ...[
+                  if (deg > 225 && deg <= 315)
                     Icon(
                       Icons.arrow_back,
-                      color: Colors.black54,
+                      color: colorBlack54,
                     ),
-                  ] else ...[
+                  if (deg <= 45 && deg > 315)
                     Icon(
                       Icons.arrow_upward,
-                      color: Colors.black54,
-                    )
-                  ],
+                      color: colorBlack54,
+                    ),
                   Text(
                     '$speedWind км/ч',
-                    style: TextStyle(color: Colors.black54),
+                    style: TextStyle(color: colorBlack54),
                   ),
                 ],
               ),

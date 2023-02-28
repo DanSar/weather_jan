@@ -50,16 +50,6 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `{locale, select, Понедельник {Понедельник} Вторник {Вторник} Среда {Среда}}`
-  String get dayW {
-    return Intl.message(
-      '{locale, select, Понедельник {Понедельник} Вторник {Вторник} Среда {Среда}}',
-      name: 'dayW',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Понедельник`
   String get Monday {
     return Intl.message(

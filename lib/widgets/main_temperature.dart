@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:weather_jan/models/models.dart';
 import 'package:intl/intl.dart';
+import 'package:weather_jan/const/size_colors.dart';
+import '../domain/models/models.dart';
 
 class MainTemp extends StatelessWidget {
   final AsyncSnapshot<WeatherModels> snapshot;
@@ -8,14 +9,16 @@ class MainTemp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sizeTemp = MediaQuery.of(context).size.height / 6.5;
+    final sizeMain = MediaQuery.of(context).size.height / 1.7;
     final forecastList = snapshot.data?.list;
     final temp = forecastList?[0].main?.temp?.toStringAsFixed(0);
     final description = forecastList?[0].weather?[0].description;
     final beginningOfSentenceCaseDescription = toBeginningOfSentenceCase(
         description); //Чтобы использовать строку с заглавной буквы
     return Container(
-      color: Colors.transparent,
-      height: 440.0,
+      color: colorTransparent,
+      height: sizeMain,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -23,19 +26,30 @@ class MainTemp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     '$temp',
-                    style: const TextStyle(
-                      fontSize: 100.0,
-                      color: Colors.white,
+                    style: TextStyle(
+                      fontSize: sizeTemp,
+                      color: colorText,
                     ),
                   ),
-                  const Text(
-                    '°C',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.white,
+                  Container(
+                    height: sizeTemp,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Text(
+                          '°C',
+                          style: TextStyle(
+                            fontSize: sizeM,
+                            color: colorText,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -43,8 +57,8 @@ class MainTemp extends StatelessWidget {
               Text(
                 '$beginningOfSentenceCaseDescription',
                 style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.white,
+                  fontSize: sizeS,
+                  color: colorText,
                 ),
               ),
             ],
