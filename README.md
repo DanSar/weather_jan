@@ -1,16 +1,38 @@
-# weather_jan
+Weather Jan - Приложение для прогноза погоды 🌤️
+🔧 Функциональные возможности
+• Получение прогноза погоды по геолокации.
+• Просмотр текущей температуры, влажности и давления.
+• Прогноз на несколько дней вперёд.
+• Возможность выбора локации вручную.
+📸 Скриншоты
+![Screenshot 1](assets/images/screenshot1.png)
+*Главный экран с прогнозом погоды.*
 
-A new Flutter project.
+![Screenshot 2](assets/images/screenshot2.png)
+*Экран выбора города для прогноза.*
+🚀 Установка
+### Шаг 1: Клонируйте репозиторий
+`git clone https://github.com/DanSar/weather_jan.git`
 
-## Getting Started
+### Шаг 2: Перейдите в каталог проекта
+`cd weather_jan`
 
-This project is a starting point for a Flutter application.
+### Шаг 3: Установите зависимости
+`flutter pub get`
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Шаг 4: Запустите приложение
+`flutter run`
+⚙️ Технологии
+• **Flutter**: фреймворк для кроссплатформенной разработки.
+• **Dart**: язык программирования.
+• **OpenWeather API**: API для получения данных о погоде.
+🛠️ Внесение изменений
+1. Создайте свою ветку для внесения изменений.
+2. Выполните `git pull origin main` для синхронизации с основной веткой.
+3. Добавьте, закоммитьте и запушьте ваши изменения.
+4. Создайте pull request.
+🔗 Ссылки
+• [Сайт проекта](https://github.com/DanSar/weather_jan)
+• [API для погоды](https://openweathermap.org/api)
+📜 Лицензия
+Этот проект лицензирован на условиях MIT License.
