@@ -216,7 +216,7 @@ class _ScreenIndexAirState extends State<ScreenIndexAir> {
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
                                   content: Text(
-                                      'Индекс качества воздуха(по шкале 1-5), '
+                                      'Индекс качества воздуха(по шкале 1-5) , '
                                       'где 1 - отличное качество воздуха, а 5 - ужасное.'
                                       'Помимо базового индекса качества воздуха, '
                                       'API возвращает данные о загрязняющих газах, '
