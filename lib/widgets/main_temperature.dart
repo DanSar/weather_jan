@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:weather_jan/const/size_colors.dart';
-import '../domain/models/models.dart';
+import 'package:weather_jan/constants/size_colors.dart';
+import '../models/models/models.dart';
 
 class MainTemp extends StatelessWidget {
   final AsyncSnapshot<WeatherModels> snapshot;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../const/formatted.dart';
+import 'package:weather_jan/constants/size_colors.dart';
+import '../../utils/formatted.dart';
 
 Widget hourlyCard(AsyncSnapshot snapshot, int index) {
   final forecastList = snapshot.data?.list;
@@ -23,7 +23,7 @@ Widget hourlyCard(AsyncSnapshot snapshot, int index) {
         ),
         Text(
           '$temp°C',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: colorText),
         ),
         Image.network(icon),
         Row(
@@ -32,26 +32,26 @@ Widget hourlyCard(AsyncSnapshot snapshot, int index) {
             if (deg > 45 && deg <= 135)
               Icon(
                 Icons.arrow_forward,
-                color: Colors.black54,
+                color: colorBlack54,
               ),
             if (deg > 135 && deg <= 225)
               Icon(
                 Icons.arrow_downward,
-                color: Colors.black54,
+                color: colorBlack54,
               ),
             if (deg > 225 && deg <= 315)
               Icon(
                 Icons.arrow_back,
-                color: Colors.black54,
+                color: colorBlack54,
               ),
             if (deg <= 45 && deg > 315)
               Icon(
                 Icons.arrow_upward,
-                color: Colors.black54,
+                color: colorBlack54,
               ),
             Text(
               '$speedWind км/ч',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: colorText),
             ),
           ],
         ),

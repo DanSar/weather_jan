@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:weather_jan/const/size_colors.dart';
+import 'package:weather_jan/constants/size_colors.dart';
 import 'package:weather_jan/widgets/five_day_cart.dart';
-import '../domain/models/models.dart';
+import '../../models/models/models.dart';
 
 class FiveDayScreen extends StatelessWidget {
   final AsyncSnapshot<WeatherModels> snapshot;

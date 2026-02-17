@@ -35,19 +35,23 @@ class Location {
 
     if (permission == LocationPermission.deniedForever) {
       // В разрешениях отказано навсегда, обращайтесь соответствующим образом.
-      print("Нет разрешения на геолокацию");
+      print(
+          "Разрешения навсегда отклонены. Пожалуйста, включите в настройках.");
+      return Future.error('Разрешения навсегда отклонены');
     }
 
     // Когда мы доберемся сюда, разрешения будут предоставлены,
     // и мы сможем продолжить доступ к местоположению устройства.
     try {
       Position position = await Geolocator.getCurrentPosition(
-              desiredAccuracy: LocationAccuracy.best)
+              locationSettings: LocationSettings(
+                  accuracy: LocationAccuracy.best, distanceFilter: 0))
           .timeout(Duration(seconds: 10));
       latitude = position.latitude;
       longitude = position.longitude;
     } catch (e) {
-      print('Ошибка: $e');
+      print('Ошибка получения локации: $e');
+      rethrow;
     }
   }
 }

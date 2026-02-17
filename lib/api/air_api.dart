@@ -1,34 +1,45 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:weather_jan/const/api_requests.dart';
+import 'package:weather_jan/constants/api_requests.dart';
 import 'package:http/http.dart' as http;
-import '../../domain/modelsAir/modelsAir.dart';
-import '../util/location.dart';
+import '../models/modelsAir/models_air.dart';
+import '../utils/location.dart';
 
 class AirApi {
   Future<AirPollution?> fetchAirPollution({bool? isCity}) async {
-    Location location = Location();
-    await location.getCurrentLocation();
-    Map<String, String> parameters;
-    var query = {
-      'lat': location.latitude.toString(),
-      'lon': location.longitude.toString(),
-      'APPID': ApiRequests.WEATHER_APP_ID,
-    };
-    parameters = query;
-    Uri uri = Uri.https(
-        ApiRequests.WEATHER_BASE_URL_DOMAIN, ApiRequests.AIR_PATH, parameters);
+    final client = http.Client();
 
-    log('request: ${uri.toString()}');
+    try {
+      Location location = Location();
+      await location.getCurrentLocation();
 
-    var response = await http.get(uri);
+      final parameters = {
+        'lat': location.latitude?.toString() ?? '',
+        'lon': location.longitude?.toString() ?? '',
+        'APPID': ApiRequests.weatherAppId,
+      };
 
-    print('response: ${response.body}');
+      final uri = Uri.https(
+        ApiRequests.weatherBaseUrlDomain,
+        ApiRequests.airPath,
+        parameters,
+      );
 
-    if (response.statusCode == 200) {
-      return AirPollution.fromJson(json.decode(response.body));
-    } else {
-      return Future.error('Ошибка');
+      log('request: ${uri.toString()}');
+
+      final response = await client.get(uri);
+
+      log('response status: ${response.statusCode}');
+      log('response body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        return AirPollution.fromJson(json.decode(response.body));
+      } else {
+        throw Exception(
+            'Ошибка загрузки данных о качестве воздуха: ${response.statusCode}');
+      }
+    } finally {
+      client.close();
     }
   }
 }

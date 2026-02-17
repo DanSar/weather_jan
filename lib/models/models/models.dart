@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:weather_jan/const/api_requests.dart';
+import 'package:weather_jan/constants/api_requests.dart';
 
 part 'models.g.dart';
 
@@ -49,7 +49,7 @@ class WeatherList {
   Map<String, dynamic> toJson() => _$WeatherListToJson(this);
 
   String getIconUrl() {
-    return '${ApiRequests.WEATHER_IMAGES_URL}${weather?[0].icon}.png';
+    return '${ApiRequests.weatherImagesUrl}${weather?[0].icon}.png';
   }
 }
 
@@ -57,27 +57,27 @@ class WeatherList {
 class Main {
   double? temp; //Температура
   double?
-      feels_like; //Этот температурный параметр определяет восприятие погоды человеком
-  double? temp_min; // Минимальная температура на момент расчета
-  double? temp_max; //Максимальная температура на момент расчета
+      feelsLike; //Этот температурный параметр определяет восприятие погоды человеком
+  double? tempMin; // Минимальная температура на момент расчета
+  double? tempMax; //Максимальная температура на момент расчета
   int?
       pressure; //Атмосферное давление на уровне моря по умолчанию в Гектопаскаль(hPa)
   // 1 hPa = 0.7500638 mmHg
-  int? sea_level; //Атмосферное давление на уровне моря
-  int? grnd_level; //Атмосферное давление на уровне земли
+  int? seaLevel; //Атмосферное давление на уровне моря
+  int? grndLevel; //Атмосферное давление на уровне земли
   int? humidity; //Влажность, %
-  double? temp_kf; //Внутренний параметр
+  double? tempKf; //Внутренний параметр
 
   Main(
       {this.temp,
-      this.feels_like,
-      this.temp_min,
-      this.temp_max,
+      this.feelsLike,
+      this.tempMin,
+      this.tempMax,
       this.pressure,
-      this.sea_level,
-      this.grnd_level,
+      this.seaLevel,
+      this.grndLevel,
       this.humidity,
-      this.temp_kf});
+      this.tempKf});
 
   factory Main.fromJson(Map<String, dynamic> json) => _$MainFromJson(json);
 

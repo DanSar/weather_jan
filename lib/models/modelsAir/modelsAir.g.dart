@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'modelsAir.dart';
+part of 'models_air.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -38,7 +38,7 @@ AirList _$AirListFromJson(Map<String, dynamic> json) => AirList(
       components: json['components'] == null
           ? null
           : Components.fromJson(json['components'] as Map<String, dynamic>),
-      dt: json['dt'] as int?,
+      dt: (json['dt'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$AirListToJson(AirList instance) => <String, dynamic>{
@@ -48,7 +48,7 @@ Map<String, dynamic> _$AirListToJson(AirList instance) => <String, dynamic>{
     };
 
 Main _$MainFromJson(Map<String, dynamic> json) => Main(
-      aqi: json['aqi'] as int?,
+      aqi: (json['aqi'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$MainToJson(Main instance) => <String, dynamic>{
@@ -61,7 +61,7 @@ Components _$ComponentsFromJson(Map<String, dynamic> json) => Components(
       no2: (json['no2'] as num?)?.toDouble(),
       o3: (json['o3'] as num?)?.toDouble(),
       so2: (json['so2'] as num?)?.toDouble(),
-      pm25: (json['pm2_5'] as num?)?.toDouble(),
+      pm2_5: (json['pm2_5'] as num?)?.toDouble(),
       pm10: (json['pm10'] as num?)?.toDouble(),
       nh3: (json['nh3'] as num?)?.toDouble(),
     );
@@ -73,7 +73,7 @@ Map<String, dynamic> _$ComponentsToJson(Components instance) =>
       'no2': instance.no2,
       'o3': instance.o3,
       'so2': instance.so2,
-      'pm2_5': instance.pm25,
+      'pm2_5': instance.pm2_5,
       'pm10': instance.pm10,
       'nh3': instance.nh3,
     };

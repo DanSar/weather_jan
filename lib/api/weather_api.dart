@@ -1,49 +1,57 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
-import 'package:weather_jan/const/api_requests.dart';
-import '../../domain/models/models.dart';
-import '../util/location.dart';
+import 'package:weather_jan/constants/api_requests.dart';
+import '../../models/models/models.dart';
+import '../utils/location.dart';
 
 class WeatherApi {
-  Future<WeatherModels> fetchWeatherCity({String? city, bool? isCity}) async {
-    Location location = Location();
-    await location.getCurrentLocation();
+  Future<WeatherModels> fetchWeatherCity(
+      {String? city, bool? isCity = false}) async {
+    final client = http.Client();
 
-    Map<String, String?> parameters;
+    try {
+      Location location = Location();
+      await location.getCurrentLocation();
 
-    if (isCity == true) {
-      var queryParameters = {
-        'appid': ApiRequests.WEATHER_APP_ID,
-        'units': 'metric',
-        'q': city,
-        'lang': 'ru',
-      };
-      parameters = queryParameters;
-    } else {
-      var queryParameters = {
-        'appid': ApiRequests.WEATHER_APP_ID,
-        'units': 'metric',
-        'lat': location.latitude.toString(),
-        'lon': location.longitude.toString(),
-        'lang': 'ru',
-      };
-      parameters = queryParameters;
-    }
+      Map<String, String?> parameters;
 
-    Uri uri = Uri.https(ApiRequests.WEATHER_BASE_URL_DOMAIN,
-        ApiRequests.WEATHER_FORECAST_PATH, parameters);
+      if (isCity == true && city != null) {
+        parameters = {
+          'appid': ApiRequests.weatherAppId,
+          'units': 'metric',
+          'q': city,
+          'lang': 'ru',
+        };
+      } else {
+        parameters = {
+          'appid': ApiRequests.weatherAppId,
+          'units': 'metric',
+          'lat': location.latitude?.toString() ?? '',
+          'lon': location.longitude?.toString() ?? '',
+          'lang': 'ru',
+        };
+      }
 
-    log('request: ${uri.toString()}');
+      final uri = Uri.https(
+        ApiRequests.weatherBaseUrlDomain,
+        ApiRequests.weatherForecastPath,
+        parameters,
+      );
 
-    var response = await http.get(uri);
+      log('request: ${uri.toString()}');
 
-    print('response: ${response.body}');
+      final response = await http.get(uri);
 
-    if (response.statusCode == 200) {
-      return WeatherModels.fromJson(json.decode(response.body));
-    } else {
-      return Future.error('Ошибка');
+      log('response status: ${response.statusCode}');
+
+      if (response.statusCode == 200) {
+        return WeatherModels.fromJson(json.decode(response.body));
+      } else {
+        throw Exception('Ошибка загрузки погоды: ${response.statusCode}');
+      }
+    } finally {
+      client.close();
     }
   }
 }

@@ -1,122 +1,86 @@
 import 'package:flutter/material.dart';
-import 'package:weather_jan/const/size_colors.dart';
-import '../domain/models/models.dart';
+import 'package:weather_jan/constants/size_colors.dart';
+import '../models/models/models.dart';
 
 class DetailedWeather extends StatelessWidget {
   final AsyncSnapshot<WeatherModels> snapshot;
-  const DetailedWeather({required this.snapshot});
+  const DetailedWeather({super.key, required this.snapshot});
+
+  static const _textStyle = TextStyle(color: colorText);
+  static const _valueStyle = TextStyle(
+    color: colorText,
+    fontWeight: FontWeight.bold,
+  );
+  static const _mHgPerHPa = 0.7500638; // 1 hPa = 0.7500638 mmHg
 
   @override
   Widget build(BuildContext context) {
     final forecastList = snapshot.data?.list;
-    final feelsLike = forecastList![0].main?.feelsLike;
-    final feelsLikeS = double.parse(feelsLike!.toStringAsFixed(0));
-    final pop = forecastList[0].pop! * 100;
-    final popS = pop.toStringAsFixed(0);
-    final speed = forecastList[0].wind?.speed;
-    final himidity = forecastList[0].main?.humidity;
 
-    final mmGh = 0.7500638;
-    final pressure = forecastList[0].main!.pressure! * mmGh;
-    //Атмосферное давление на уровне моря по умолчанию в Гектопаскаль(hPa)
-    // 1 hPa = 0.7500638 mmHg
+    // Защита от null
+    if (forecastList == null || forecastList.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
-    final clouds = forecastList[0].clouds?.all;
+    final firstForecast = forecastList[0];
+
+// Безопасное извлечение данных с значениями по умолчанию
+    final feelsLike = firstForecast.main?.feelsLike;
+    final feelsLikeValue =
+        feelsLike != null ? feelsLike.round().toString() : '--';
+    final popValue = firstForecast.pop != null
+        ? (firstForecast.pop! * 100).round().toString()
+        : '--';
+    final windSpeed = firstForecast.wind?.speed?.toString() ?? '--';
+    final himidity = firstForecast.main?.humidity.toString() ?? '--';
+
+    final pressure = firstForecast.main?.pressure != null
+        ? (firstForecast.main!.pressure! * _mHgPerHPa).round().toString()
+        : '--'; //Атмосферное давление на уровне моря по умолчанию в Гектопаскаль(hPa)
+
+    final clouds = firstForecast.clouds?.all?.toString() ?? '--';
+
+    // Структура данных для отображения (левая и правая колонки)
+    final weatherItems = [
+      _WeatherItem(label: 'Ощущается', value: '$feelsLikeValue °С'),
+      _WeatherItem(label: 'Вероятность дождя', value: '$popValue %'),
+      _WeatherItem(label: 'Скорость ветра', value: '$windSpeed м/с'),
+      _WeatherItem(label: 'Влажность', value: '$himidity %'),
+      _WeatherItem(label: 'Давление', value: '$pressure mmHg'),
+      _WeatherItem(label: 'Облачность', value: '$clouds %'),
+    ];
+
     return Container(
       margin: const EdgeInsets.all(6.0),
-      padding: const EdgeInsets.fromLTRB(20, 10, 90, 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       height: MediaQuery.of(context).size.width / 2.4,
       decoration: BoxDecoration(
         color: colorWhite38,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: [
-                  Text(
-                    'Ощущается',
-                    style: TextStyle(color: colorText),
-                  ),
-                  Text(
-                    '${feelsLikeS} °С',
-                    style: TextStyle(color: colorText),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    'Вероятность дождя',
-                    style: TextStyle(color: colorText),
-                  ),
-                  Text(
-                    '${popS} %',
-                    style: TextStyle(color: colorText),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    'Скорость ветра',
-                    style: TextStyle(color: colorText),
-                  ),
-                  Text(
-                    '${speed} м/с',
-                    style: TextStyle(color: colorText),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: [
-                  Text(
-                    'Влажность',
-                    style: TextStyle(color: colorText),
-                  ),
-                  Text(
-                    '${himidity} %',
-                    style: TextStyle(color: colorText),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    'Давление',
-                    style: TextStyle(color: colorText),
-                  ),
-                  Text(
-                    '${pressure.round()} mmHg',
-                    style: TextStyle(color: colorText),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    'Облачность',
-                    style: TextStyle(color: colorText),
-                  ),
-                  Text(
-                    '${clouds} %',
-                    style: TextStyle(color: colorText),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
+      child: GridView.count(
+        crossAxisCount: 2,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        childAspectRatio: 2,
+        children: weatherItems
+            .map((item) => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(item.label, style: _textStyle),
+                    Text(item.value, style: _valueStyle),
+                  ],
+                ))
+            .toList(),
       ),
     );
   }
+}
+
+// Вспомогательный класс для данных погоды
+class _WeatherItem {
+  final String label;
+  final String value;
+
+  const _WeatherItem({required this.label, required this.value});
 }

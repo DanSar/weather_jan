@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_jan/const/size_colors.dart';
-import '../const/list_city.dart';
+import 'package:weather_jan/constants/size_colors.dart';
+import '../../constants/list_city.dart';
 
 class CityScreen extends StatefulWidget {
   @override

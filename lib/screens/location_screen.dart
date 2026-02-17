@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_jan/const/size_colors.dart';
-import 'package:weather_jan/screens/home.dart';
+import 'package:weather_jan/constants/size_colors.dart';
+import 'package:weather_jan/screens/home/home.dart';
 
 import '../api/weather_api.dart';
 

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:weather_jan/const/size_colors.dart';
-import '../util/formatted.dart';
+import 'package:weather_jan/constants/size_colors.dart';
+import '../utils/formatted.dart';
 
 Widget fiveDayCard(AsyncSnapshot snapshot, int index) {
   final forecastList = snapshot.data?.list;
-  final dayOfWeekCard = '';
   DateTime date =
       DateTime.fromMillisecondsSinceEpoch(forecastList[index].dt * 1000);
   final timeDate = Util.getHourMinute(date);

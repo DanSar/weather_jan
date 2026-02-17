@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:weather_jan/const/size_colors.dart';
-import 'package:weather_jan/screens/five_day_screen.dart';
+import 'package:weather_jan/constants/size_colors.dart';
+import 'package:weather_jan/screens/five_day/five_day_screen.dart';
 import 'package:weather_jan/widgets/data_source.dart';
 import 'package:weather_jan/widgets/detailed_weather.dart';
-import 'package:weather_jan/widgets/hour/hourly_list_view.dart';
+import 'package:weather_jan/widgets/hourly/hourly_list_view.dart';
 import 'package:weather_jan/widgets/image.dart';
 import 'package:weather_jan/widgets/main_temperature.dart';
 import 'package:weather_jan/widgets/upcoming.dart';
-import '../api/weather_api.dart';
-import '../domain/models/models.dart';
-import 'air/location_air.dart';
-import 'city_screen.dart';
+import '../../api/weather_api.dart';
+import '../../models/models/models.dart';
+import '../air/location_air.dart';
+import '../city/city_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   final locationWeather;
