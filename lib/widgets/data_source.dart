@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:weather_jan/constants/size_colors.dart';
 
 class DataSource extends StatelessWidget {
-  const DataSource({Key? key}) : super(key: key);
+  const DataSource({super.key});
 
   @override
   Widget build(BuildContext context) {

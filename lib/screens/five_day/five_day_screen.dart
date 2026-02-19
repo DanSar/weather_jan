@@ -6,7 +6,7 @@ import '../../models/models/models.dart';
 
 class FiveDayScreen extends StatelessWidget {
   final AsyncSnapshot<WeatherModels> snapshot;
-  const FiveDayScreen({required this.snapshot});
+  const FiveDayScreen({super.key, required this.snapshot});
 
   @override
   Widget build(BuildContext context) {

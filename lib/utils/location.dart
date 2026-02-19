@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:geolocator/geolocator.dart';
 
 class Location {
@@ -35,8 +37,6 @@ class Location {
 
     if (permission == LocationPermission.deniedForever) {
       // В разрешениях отказано навсегда, обращайтесь соответствующим образом.
-      print(
-          "Разрешения навсегда отклонены. Пожалуйста, включите в настройках.");
       return Future.error('Разрешения навсегда отклонены');
     }
 
@@ -50,7 +50,7 @@ class Location {
       latitude = position.latitude;
       longitude = position.longitude;
     } catch (e) {
-      print('Ошибка получения локации: $e');
+      log('Ошибка получения локации: $e');
       rethrow;
     }
   }

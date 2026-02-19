@@ -14,8 +14,8 @@ import '../air/location_air.dart';
 import '../city/city_screen.dart';
 
 class MyHomePage extends StatefulWidget {
-  final locationWeather;
-  const MyHomePage({this.locationWeather});
+  final WeatherModels? locationWeather;
+  const MyHomePage({super.key, this.locationWeather});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -90,86 +90,84 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           body: ListView(
             children: [
-              Container(
-                child: FutureBuilder<WeatherModels>(
-                  future: forecastObject,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Column(
-                        children: [
-                          MainTemp(snapshot: snapshot),
-                          Upcoming(snapshot: snapshot),
-                          Container(
-                            width: double.infinity,
-                            color: colorTransparent,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 24.0),
-                            child: TextButton(
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(colorWhite38),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ),
+              FutureBuilder<WeatherModels>(
+                future: forecastObject,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                      children: [
+                        MainTemp(snapshot: snapshot),
+                        Upcoming(snapshot: snapshot),
+                        Container(
+                          width: double.infinity,
+                          color: colorTransparent,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 24.0),
+                          child: TextButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  WidgetStateProperty.all(colorWhite38),
+                              shape: WidgetStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
                                 ),
                               ),
-                              onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return FiveDayScreen(snapshot: snapshot);
-                                }));
-                              },
-                              child: Text(
-                                'Прогноз на 5 дней',
-                                style: TextStyle(color: colorText),
-                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return FiveDayScreen(snapshot: snapshot);
+                              }));
+                            },
+                            child: Text(
+                              'Прогноз на 5 дней',
+                              style: TextStyle(color: colorText),
                             ),
                           ),
-                          ImagePresenter(),
-                          HourlyListView(snapshot: snapshot),
-                          DetailedWeather(snapshot: snapshot),
-                          Container(
-                            width: double.infinity,
-                            color: colorTransparent,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 24.0),
-                            child: TextButton(
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(colorWhite38),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ),
-                                ),
-                              ),
-                              onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return LocationAir();
-                                }));
-                              },
-                              child: Text(
-                                'Индекс качества воздуха',
-                                style: TextStyle(color: colorText),
-                              ),
-                            ),
-                          ),
-                          DataSource(),
-                        ],
-                      );
-                    } else {
-                      return Center(
-                        child: Text(
-                          'Город не найден\nПожалуйста, правильно введите название города',
-                          style: TextStyle(fontSize: 25),
-                          textAlign: TextAlign.center,
                         ),
-                      );
-                    }
-                  },
-                ),
+                        ImagePresenter(),
+                        HourlyListView(snapshot: snapshot),
+                        DetailedWeather(snapshot: snapshot),
+                        Container(
+                          width: double.infinity,
+                          color: colorTransparent,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 24.0),
+                          child: TextButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  WidgetStateProperty.all(colorWhite38),
+                              shape: WidgetStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                ),
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return LocationAir();
+                              }));
+                            },
+                            child: Text(
+                              'Индекс качества воздуха',
+                              style: TextStyle(color: colorText),
+                            ),
+                          ),
+                        ),
+                        DataSource(),
+                      ],
+                    );
+                  } else {
+                    return Center(
+                      child: Text(
+                        'Город не найден\nПожалуйста, правильно введите название города',
+                        style: TextStyle(fontSize: 25),
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  }
+                },
               ),
             ],
           ),

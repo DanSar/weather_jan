@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ImagePresenter extends StatelessWidget {
-  const ImagePresenter({Key? key}) : super(key: key);
+  const ImagePresenter({super.key});
 
   @override
   Widget build(BuildContext context) {

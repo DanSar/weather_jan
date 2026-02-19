@@ -5,7 +5,7 @@ import '../models/models/models.dart';
 
 class MainTemp extends StatelessWidget {
   final AsyncSnapshot<WeatherModels> snapshot;
-  const MainTemp({required this.snapshot});
+  const MainTemp({super.key, required this.snapshot});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class MainTemp extends StatelessWidget {
                       color: colorText,
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: sizeTemp,
                     child: Column(
                       children: [

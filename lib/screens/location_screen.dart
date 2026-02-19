@@ -1,23 +1,31 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:weather_jan/constants/size_colors.dart';
 import 'package:weather_jan/screens/home/home.dart';
-
 import '../api/weather_api.dart';
 
 class LocationScreen extends StatefulWidget {
+  const LocationScreen({super.key});
+
   @override
   State<LocationScreen> createState() => _LocationScreenState();
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  void getLocationData() async {
+  Future<void> getLocationData() async {
     try {
       var weatherInfo = await WeatherApi().fetchWeatherCity();
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return MyHomePage(locationWeather: weatherInfo);
-      }));
+
+      // Проверяем, не уничтожен ли виджет
+      if (!mounted) return;
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => MyHomePage(locationWeather: weatherInfo)),
+      );
     } catch (e) {
-      print('$e');
+      log('Ошибка получения данных о погоде: $e');
     }
   }
 

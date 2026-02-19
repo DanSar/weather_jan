@@ -5,7 +5,7 @@ import '../../models/models/models.dart';
 
 class HourlyListView extends StatelessWidget {
   final AsyncSnapshot<WeatherModels> snapshot;
-  const HourlyListView({required this.snapshot});
+  const HourlyListView({super.key, required this.snapshot});
 
   @override
   Widget build(BuildContext context) {

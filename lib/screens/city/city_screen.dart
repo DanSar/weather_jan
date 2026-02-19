@@ -3,6 +3,8 @@ import 'package:weather_jan/constants/size_colors.dart';
 import '../../constants/list_city.dart';
 
 class CityScreen extends StatefulWidget {
+  const CityScreen({super.key});
+
   @override
   State<CityScreen> createState() => _CityScreenState();
 }
